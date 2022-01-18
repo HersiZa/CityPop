@@ -1,5 +1,9 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ToastAndroid, TouchableOpacity, Button, SafeAreaView, Alert } from 'react-native';
+import SearchforCity from "./src/SearchforCity";
+
+
 
 export default function App() {
   const showToast = () => {
@@ -13,7 +17,15 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.text}>CityPop</Text>
       <Text style={styles.text2}>Fixa Api till geonames</Text>
-
+      <Router>
+            <div className="App">
+                <Link to="/"><h1 data-aos="fade-down" data-aos-duration="1000">Citypop</h1></Link>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/search-city" component={SearchCity}/>            
+                </Switch>
+            </div>
+        </Router>
     <TouchableOpacity style = {styles.button} onPress={() => showToast()}>
       <Text style={{color:"#fff"}}>Press me!</Text>
     </TouchableOpacity>
@@ -22,6 +34,12 @@ export default function App() {
     </View>
   );
 }
+const Home = () => (
+  <div className="home">
+      <Link className="search-type" id="search-city" to='/search-city' data-aos="fade-right" data-aos-duration="1700">
+              <p>Search by city</p></Link>
+  </div>
+  );
 
 const styles = StyleSheet.create({
   container: {
